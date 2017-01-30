@@ -1,8 +1,3 @@
-
-# coding: utf-8
-
-# In[1]:
-
 import pandas as pd
 import numpy as np
 import time as time 
@@ -18,8 +13,6 @@ test_labels=test_data['label'] #Extracting the labels of the test dataset
 test_reviews=test_data['text'] #Extracting the reviews of the test dataset
 
 
-# In[2]:
-
 #Finding the unigram representation
 from sklearn.feature_extraction.text import CountVectorizer
 vectorizer=CountVectorizer()
@@ -28,7 +21,7 @@ unigram_training_words=vectorizer.fit_transform(training_reviews[0:200000])
 print unigram_training_words.shape
 
 
-# In[3]:
+
 
 #Finding the tf-idf representation
 from sklearn.feature_extraction.text import TfidfTransformer 
@@ -37,7 +30,7 @@ tfidf_training_words=transformer.fit_transform(unigram_training_words)-unigram_t
 print (tfidf_training_words)
 
 
-# In[4]:
+
 
 # #Finding the bigram representation 
 bigram_vectorizer=CountVectorizer(ngram_range=(1,2))
@@ -45,7 +38,7 @@ bigram_training_words=bigram_vectorizer.fit_transform(training_reviews[0:1000])
 print (bigram_training_words.shape)
 
 
-# In[5]:
+
 
 #Additional Representations
 #N-Gram
@@ -59,10 +52,9 @@ modified_tfidf_training_words=transformer.fit_transform(unigram_training_words)
 print (modified_tfidf_training_words)
 
 
-# In[6]:
+
 
 #Averaged Perceptron
-
 from scipy import sparse
 from scipy.sparse import csr_matrix
 from sklearn.utils.extmath import safe_sparse_dot
@@ -123,7 +115,7 @@ def perceptron_classifier(x_training,y_training,x_test,y_test):
     return error
 
 
-# In[7]:
+
 
 #Cross-Validation
 from sklearn.model_selection import KFold
@@ -139,7 +131,7 @@ for training_index, test_index in kf.split(bigram_training_words):
 print (time.time()-start)
 
 
-# In[8]:
+
 
 #Naive-Bayes 
 from sklearn.naive_bayes import MultinomialNB
@@ -159,10 +151,3 @@ for training_index, test_index in kf.split(unigram_training_words):
     print error
     
 print (time.time()-start)
-    
-
-
-# In[ ]:
-
-
-
