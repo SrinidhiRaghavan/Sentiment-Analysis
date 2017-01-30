@@ -17,3 +17,4 @@ This project is a simpler version of Sentiment Analysis of the reviews of variou
 * N-Gram Representation:
   The n-gram representation is defined as the number of times a set of n-words occurs together in the document 
   
+In this project, we use Averaged perceptron and Naive Bayes classifier are used as the learning methods. Additionally, five-fold cross-validation is used to enhance the performance. Using these representations and learning methods, it was concluded that Averaged Perceptron Classification on Bigram Representation  was the best for the given text analysis 
